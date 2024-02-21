@@ -14,9 +14,18 @@ public class Run {
         // task 2 - список рядків у верхньому регістрі відсортованих за спаданням
         System.out.println(getSortedNames(names));
 
-        // task 3 -
+        // task 3 - отримати з масиву всі числа, і вивести їх у відсортованому вигляді через кому
         List<String> array = Arrays.asList("1, 2, 0", "4, 5");
         System.out.println(getNumbers(array));
+
+        // task 4
+        long seed = 42;
+        long a = 25214903917L;
+        long c = 11L;
+        long m = (long) Math.pow(2, 48);
+
+        Stream<Long> randomStream = generateRandomStream(a, c, m, seed);
+        randomStream.limit(10).forEach(System.out::println); // перші 10 випадкових чисел
 
         // task 5 - перемішати елементи зі стрімів first та second
         Stream<String> first = Arrays.asList("John", "Bill", "Max", "Ivan").stream();
@@ -24,6 +33,7 @@ public class Run {
         zip(first, second).forEach(System.out::println);
     }
 
+    // task 1
     public static String getNames(List<String> names) {
         return names
                 .stream()
@@ -32,6 +42,7 @@ public class Run {
                 .collect(Collectors.joining(", "));      // перетворити в строку
     }
 
+    // task 2
     public static List <String> getSortedNames (List<String> names){
         return names
                 .stream()
@@ -40,6 +51,7 @@ public class Run {
                 .collect(Collectors.toList());      // перетворити в список
     }
 
+    // task 3
     public static String getNumbers (List<String> array){
        return array
                 .stream()
@@ -50,6 +62,12 @@ public class Run {
                 .collect(Collectors.joining(", "));
     }
 
+    // task 4
+    public static Stream<Long> generateRandomStream(long a, long c, long m, long seed) {
+        return Stream.iterate(seed, x -> (a * x + c) % m);
+    }
+
+    // task 5
     public static <T> Stream<T> zip(Stream<T> first, Stream<T> second){
         List<T> firstList = first.collect(Collectors.toList());   // перетворити в список
         List<T> secondList = second.collect(Collectors.toList());
