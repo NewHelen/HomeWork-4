@@ -90,20 +90,24 @@ public class Run {
      peek(Consumer<? super T> action) - наприклад логування
      limit - (long maxSize) - вивиде обмежену кількість
      skip - (long n) - пропустить елементи
+     concat - приймає 2 стрими і повертае один concat(integerList.stream(), integerList.stream());
+
 
        Terminal operators
 
-     forEach(Consumer<? super T> action)
+     forEach(Consumer<? super T> action)   - наприклад (System.out::println) что б вивести значення
      forEachOrdered(Consumer<? super T> action)
-     toArray()
-     reduce(BinaryOperator<T> accumulator)
-     collect(Collector<? super T,A,R> collector)
+     toArray() - створити масив
+     reduce(BinaryOperator<T> accumulator) - з декількох обьектів зробити один
+     collect(Collector<? super T,A,R> collector) - отримати назад коллекцію
      min(Comparator<? super T> comparator)
      max(Comparator<? super T> comparator)
      count()
-     anyMatch(Predicate<? super T> predicate)
+
+     anyMatch(Predicate<? super T> predicate) - boolean співпадіння
      allMatch(Predicate<? super T> predicate)
      noneMatch(Predicate<? super T> predicate)
+
      findFirst()
      findAny()
 
